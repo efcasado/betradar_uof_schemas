@@ -33,7 +33,8 @@ defmodule Mix.Tasks.Uof.Schemas.Gen do
     {:unifiedfeed, "UOF.Schemas.API.Descriptions", "lib/uof/schemas/api/descriptions",
      ~w(market_descriptions match_status_descriptions betstop_reasons_descriptions
         betting_status_descriptions variant_descriptions producers void_reasons_descriptions)},
-    {:unifiedfeed, "UOF.Schemas.API.Response", "lib/uof/schemas/api/response", ~w(response bookmaker_details)},
+    {:unifiedfeed, "UOF.Schemas.API.Response", "lib/uof/schemas/api/response", ~w(response)},
+    {:unifiedfeed, "UOF.Schemas.API.Users", "lib/uof/schemas/api/users", ~w(bookmaker_details)},
     {:sports_api, "UOF.Schemas.API.Sports", "lib/uof/schemas/api/sports",
      ~w(fixtures_fixture schedule fixture_changes result_changes match_summary match_timeline
         sports sport_categories tournaments tournament_info player_profile competitor_profile
