@@ -1,0 +1,92 @@
+defmodule Mix.Tasks.Uof.Schemas.Gen do
+  @shortdoc "Fetch XSDs and generate Ecto embedded schemas"
+  @moduledoc """
+  Generate Ecto embedded schemas from the Betradar XSDs.
+
+      mix uof.schemas.gen   # fetch XSDs (if missing) + generate all groups
+
+  XSDs are cached under the git-ignored `priv/xsd/` and pinned to the upstream
+  SDK tag in `Mix.UOF.Schemas.XSD.Sources`. One module per `complexType` is
+  written under `lib/uof/schemas/` and committed to the repo, so consumers of
+  this package never run codegen. Run `mix format` afterwards to apply Styler.
+
+  The task is additive: it fetches only when a group's cache is empty and writes
+  modules without clearing the target directory. To force a clean refresh
+  (re-download XSDs and drop removed/renamed modules), run `make clean` first —
+  it deletes `priv/xsd/` and the generated schema directories — then regenerate.
+  """
+  use Mix.Task
+
+  alias Mix.UOF.Schemas.XSD
+
+  # {fetch_group, namespace, output dir, roots}
+  #
+  # `fetch_group` names the XSD source (see `Mix.UOF.Schemas.XSD.Sources`);
+  # several entries may share one source (e.g. descriptions + response both come
+  # from :unifiedfeed). `roots` is the allow-list of root *element* names to
+  # generate from: only complexTypes reachable from these are emitted, so unused
+  # endpoints in the schema set are pruned.
+  @groups [
+    {:custombet, "UOF.Schemas.API.CustomBet", "lib/uof/schemas/api/custom_bet",
+     ~w(available_selections calculation_response filtered_calculation_response response)},
+    {:probability, "UOF.Schemas.API.Probability", "lib/uof/schemas/api/probability", ~w(cashout)},
+    {:unifiedfeed, "UOF.Schemas.API.Descriptions", "lib/uof/schemas/api/descriptions",
+     ~w(market_descriptions match_status_descriptions betstop_reasons_descriptions
+        betting_status_descriptions variant_descriptions producers void_reasons_descriptions)},
+    {:unifiedfeed, "UOF.Schemas.API.Response", "lib/uof/schemas/api/response", ~w(response bookmaker_details)},
+    {:sports_api, "UOF.Schemas.API.Sports", "lib/uof/schemas/api/sports",
+     ~w(fixtures_fixture schedule fixture_changes result_changes match_summary match_timeline
+        sports sport_categories tournaments tournament_info player_profile competitor_profile
+        venue_summary tournament_seasons sport_tournaments)},
+    {:feed, "UOF.Schemas.Feed", "lib/uof/schemas/feed",
+     ~w(odds_change bet_settlement bet_stop bet_cancel rollback_bet_cancel
+        rollback_bet_settlement fixture_change alive snapshot_complete)}
+  ]
+
+  @impl Mix.Task
+  def run(_args) do
+    for {group, namespace, out_dir, roots} <- @groups do
+      generate_group(group, namespace, out_dir, roots)
+    end
+  end
+
+  defp generate_group(group, namespace, out_dir, roots) do
+    dir = ensure_xsds!(group)
+    paths = Path.wildcard(Path.join(dir, "**/*.xsd"))
+
+    if paths == [] do
+      Mix.raise("no XSDs found in #{dir} for #{group}")
+    end
+
+    {types, parsed_roots} = XSD.parse_files(paths)
+    types = scope(types, parsed_roots, roots)
+
+    File.mkdir_p!(out_dir)
+
+    for {short_name, source} <- XSD.Generator.generate(types, namespace) do
+      file = Path.join(out_dir, Macro.underscore(short_name) <> ".ex")
+      formatted = IO.iodata_to_binary(Code.format_string!(source))
+      File.write!(file, formatted <> "\n")
+      Mix.shell().info("generated #{file}")
+    end
+  end
+
+  # Fetch a group's XSDs only when its cache is empty; `make clean` clears it.
+  defp ensure_xsds!(group) do
+    dir = XSD.Sources.dir(group)
+
+    if Path.wildcard(Path.join(dir, "**/*.xsd")) == [] do
+      Mix.shell().info("fetching #{group} XSDs (#{XSD.Sources.sdk_tag()})")
+      XSD.Sources.fetch!(group)
+    else
+      dir
+    end
+  end
+
+  defp scope(types, _parsed_roots, :all), do: types
+
+  defp scope(types, parsed_roots, roots) do
+    root_type_names = XSD.root_types(parsed_roots, roots)
+    XSD.reachable_types(types, root_type_names)
+  end
+end
