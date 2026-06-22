@@ -21,20 +21,86 @@ end
 
 ## Usage
 
-`UOF.Schemas.XML.decode/2` is the single entry point. Pass a **schema module** to decode a known type (static), or a **`root element => module` registry** to dispatch on the document's root element (dynamic).
+`UOF.Schemas.XML.decode/2` is the single entry point. Pass a **`root element => module` registry** to dispatch on the document's root element (dynamic), or a **schema module** to decode a known type (static). Either way it returns `{:ok, struct}` or `{:error, Ecto.Changeset.t()}`, walking the nested embeds and casting scalars (integers, decimals, datetimes, …) as it goes.
 
-Static — an HTTP API response, where the endpoint already fixes the type:
+### Dynamic — the AMQP feed
+
+The feed is a heterogeneous stream, so you dispatch on the root element. `UOF.Schemas.Feed` ships the registry; hand it to `decode/2` and it selects the matching schema — here an `odds_change`:
 
 ```elixir
-{:ok, %UOF.Schemas.API.Users.BookmakerDetails{} = details} =
-  UOF.Schemas.XML.decode(xml, UOF.Schemas.API.Users.BookmakerDetails)
+xml = """
+<odds_change product="1" event_id="sr:match:11830662" timestamp="1620902980000">
+  <sport_event_status status="1" match_status="7" home_score="1" away_score="2"/>
+  <odds>
+    <market favourite="1" status="1" id="1">
+      <outcome id="1" odds="1.85" active="1" probabilities="0.524431"/>
+      <outcome id="2" odds="3.30" active="1" probabilities="0.286887"/>
+      <outcome id="3" odds="4.65" active="1" probabilities="0.188682"/>
+    </market>
+  </odds>
+</odds_change>
+"""
+
+{:ok, odds_change} = UOF.Schemas.XML.decode(xml, UOF.Schemas.Feed.registry())
+
+# => %UOF.Schemas.Feed.OddsChange{
+#      product: 1,
+#      event_id: "sr:match:11830662",
+#      timestamp: 1620902980000,
+#      sport_event_status: %UOF.Schemas.Feed.SportEventStatus{
+#        status: 1, match_status: 7,
+#        home_score: Decimal.new("1"), away_score: Decimal.new("2"), ...
+#      },
+#      odds: %UOF.Schemas.Feed.OddsChangeOdds{
+#        market: [
+#          %UOF.Schemas.Feed.OddsChangeMarket{
+#            id: 1, status: 1, favourite: 1,
+#            outcome: [
+#              %UOF.Schemas.Feed.OddsChangeMarketOutcome{id: "1", odds: Decimal.new("1.85"), probabilities: 0.524431, active: 1},
+#              %UOF.Schemas.Feed.OddsChangeMarketOutcome{id: "2", odds: Decimal.new("3.30"), probabilities: 0.286887, active: 1},
+#              %UOF.Schemas.Feed.OddsChangeMarketOutcome{id: "3", odds: Decimal.new("4.65"), probabilities: 0.188682, active: 1}
+#            ]
+#          }
+#        ]
+#      }, ...
+#    }
 ```
 
-Dynamic — the heterogeneous AMQP feed. `UOF.Schemas.Feed` ships the registry; pass it to `decode/2`:
+### Static — an HTTP API response
+
+When the endpoint already fixes the type, pass the schema module directly. For example, the market descriptions endpoint (`GET /v1/descriptions/{language}/markets.xml`):
 
 ```elixir
-{:ok, %UOF.Schemas.Feed.OddsChange{}} =
-  UOF.Schemas.XML.decode(xml, UOF.Schemas.Feed.registry())
+xml = """
+<market_descriptions response_code="OK">
+  <market id="1" name="1x2" groups="all|score|regular_play">
+    <outcomes>
+      <outcome id="1" name="{$competitor1}"/>
+      <outcome id="2" name="draw"/>
+      <outcome id="3" name="{$competitor2}"/>
+    </outcomes>
+  </market>
+</market_descriptions>
+"""
+
+{:ok, descriptions} =
+  UOF.Schemas.XML.decode(xml, UOF.Schemas.API.Descriptions.MarketDescriptions)
+
+# => %UOF.Schemas.API.Descriptions.MarketDescriptions{
+#      response_code: "OK",
+#      market: [
+#        %UOF.Schemas.API.Descriptions.DescMarket{
+#          id: 1, name: "1x2", groups: "all|score|regular_play",
+#          outcomes: %UOF.Schemas.API.Descriptions.DescOutcomes{
+#            outcome: [
+#              %UOF.Schemas.API.Descriptions.DescOutcomesOutcome{id: "1", name: "{$competitor1}"},
+#              %UOF.Schemas.API.Descriptions.DescOutcomesOutcome{id: "2", name: "draw"},
+#              %UOF.Schemas.API.Descriptions.DescOutcomesOutcome{id: "3", name: "{$competitor2}"}
+#            ]
+#          }, ...
+#        }
+#      ]
+#    }
 ```
 
 No single global registry is provided for the HTTP API: root element names are not unique across API groups (for example `<response>` maps to both `UOF.Schemas.API.CustomBet.Response` and `UOF.Schemas.API.Response.Response`), so callers pin the schema as above (or pass a scoped registry).
