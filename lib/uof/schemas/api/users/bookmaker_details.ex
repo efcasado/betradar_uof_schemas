@@ -1,4 +1,4 @@
-defmodule UOF.Schemas.API.Response.BookmakerDetails do
+defmodule UOF.Schemas.API.Users.BookmakerDetails do
   @moduledoc false
   use Ecto.Schema
 

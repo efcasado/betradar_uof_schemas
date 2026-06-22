@@ -26,8 +26,8 @@ end
 Static — an HTTP API response, where the endpoint already fixes the type:
 
 ```elixir
-{:ok, %UOF.Schemas.API.Response.BookmakerDetails{} = details} =
-  UOF.Schemas.XML.decode(xml, UOF.Schemas.API.Response.BookmakerDetails)
+{:ok, %UOF.Schemas.API.Users.BookmakerDetails{} = details} =
+  UOF.Schemas.XML.decode(xml, UOF.Schemas.API.Users.BookmakerDetails)
 ```
 
 Dynamic — the heterogeneous AMQP feed. `UOF.Schemas.Feed` ships the registry; pass it to `decode/2`:

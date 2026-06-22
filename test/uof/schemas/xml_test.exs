@@ -1,7 +1,7 @@
 defmodule UOF.Schemas.XMLTest do
   use ExUnit.Case, async: true
 
-  alias UOF.Schemas.API.Response.BookmakerDetails
+  alias UOF.Schemas.API.Users.BookmakerDetails
   alias UOF.Schemas.Feed
   alias UOF.Schemas.XML
 
