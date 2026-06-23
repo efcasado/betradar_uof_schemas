@@ -23,7 +23,7 @@ test: gen compile
 
 clean:
 	mix clean
-	rm -rf priv/xsd lib/uof/schemas/api lib/uof/schemas/feed
+	rm -rf priv/xsd lib/uof/schemas/api lib/uof/schemas/feed lib/uof/schemas/xml
 
 publish: deps
 	mix local.hex --force
