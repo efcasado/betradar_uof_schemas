@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sports generated_at="2026-06-23T10:00:00Z">
+  <sport id="sr:sport:1" name="Soccer"/>
+  <sport id="sr:sport:2" name="Basketball"/>
+</sports>

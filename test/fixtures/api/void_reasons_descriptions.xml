@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<void_reasons_descriptions response_code="OK" location="/v1/descriptions/void_reasons.xml">
+  <void_reason id="1" description="Cancelled due to error"/>
+  <void_reason id="6" description="Player did not participate"/>
+</void_reasons_descriptions>

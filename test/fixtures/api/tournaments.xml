@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tournaments generated_at="2026-06-23T10:00:00Z">
+  <tournament id="sr:tournament:1" name="Premier League">
+    <tournament_length start_date="2025-08-01" end_date="2026-05-30"/>
+    <sport id="sr:sport:1" name="Soccer"/>
+    <category id="sr:category:1" name="England"/>
+    <current_season id="sr:season:1" name="2025/26"/>
+    <season_coverage_info season_id="sr:season:1" scheduled="380" played="120"/>
+    <competitors>
+      <competitor id="sr:competitor:1" name="Team A"/>
+    </competitors>
+  </tournament>
+</tournaments>

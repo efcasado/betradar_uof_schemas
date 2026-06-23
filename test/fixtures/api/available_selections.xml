@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<available_selections generated_at="2026-06-23T10:00:00Z">
+  <event id="sr:match:42">
+    <markets>
+      <market id="1" specifiers="goalnr=1">
+        <outcome id="1"/>
+        <outcome id="2"/>
+      </market>
+    </markets>
+  </event>
+</available_selections>

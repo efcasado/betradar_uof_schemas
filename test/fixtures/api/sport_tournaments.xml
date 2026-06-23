@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sport_tournaments generated_at="2026-06-23T10:00:00Z">
+  <sport id="sr:sport:1" name="Soccer"/>
+  <tournaments>
+    <tournament id="sr:tournament:1" name="Premier League">
+      <sport id="sr:sport:1" name="Soccer"/>
+      <category id="sr:category:1" name="England"/>
+    </tournament>
+  </tournaments>
+</sport_tournaments>

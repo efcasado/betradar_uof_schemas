@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schedule generated_at="2026-06-23T10:00:00Z">
+  <sport_event id="sr:match:42" scheduled="2026-06-23T18:00:00Z" start_time_tbd="false">
+    <tournament id="sr:tournament:1" name="Premier League">
+      <sport id="sr:sport:1" name="Soccer"/>
+      <category id="sr:category:1" name="England"/>
+    </tournament>
+    <competitors>
+      <competitor id="sr:competitor:1" name="Team A" qualifier="home"/>
+    </competitors>
+    <venue id="sr:venue:1" name="Stadium"/>
+  </sport_event>
+</schedule>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<producers response_code="OK" location="/v1/descriptions/producers.xml">
+  <producer id="1" name="LO" description="Live Odds" api_url="https://api.betradar.com/v1/liveodds/"
+            active="true" scope="live" stateful_recovery_window_in_minutes="600"/>
+  <producer id="3" name="Ctrl" description="Betradar Ctrl" api_url="https://api.betradar.com/v1/pre/"
+            active="true" scope="prematch" stateful_recovery_window_in_minutes="4320"/>
+</producers>

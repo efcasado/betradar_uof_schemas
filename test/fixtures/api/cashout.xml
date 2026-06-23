@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cashout product="1" event_id="sr:match:42" timestamp="1653576646190" request_id="7">
+  <sport_event_status status="1" reporting="1" match_status="7" home_score="1" away_score="2">
+    <clock match_time="71:00" stopped="false"/>
+    <period_scores>
+      <period_score match_status_code="6" number="1" home_score="1" away_score="0"/>
+    </period_scores>
+    <results>
+      <result match_status_code="100" home_score="1" away_score="2"/>
+    </results>
+    <statistics>
+      <yellow_cards home="2" away="1"/>
+    </statistics>
+  </sport_event_status>
+  <odds betting_status="1" betstop_reason="0">
+    <market favourite="1" status="1" cashout_status="1" id="1" specifiers="goalnr=1">
+      <market_metadata next_betstop="1653576700000"/>
+      <outcome id="1" odds="2.25" probabilities="0.425694" active="1"/>
+    </market>
+  </odds>
+</cashout>

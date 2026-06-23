@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bet_cancel start_time="1653570000000" end_time="1653576000000" product="1"
+            event_id="sr:match:42" timestamp="1653576646190" request_id="7">
+  <market void_reason="0" id="1" specifiers="goalnr=1">
+    <outcome id="1"/>
+    <outcome id="2"/>
+  </market>
+</bet_cancel>

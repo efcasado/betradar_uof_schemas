@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rollback_bet_settlement product="1" event_id="sr:match:42" timestamp="1653576646190" request_id="7">
+  <market id="1" specifiers="goalnr=1">
+    <outcome id="1"/>
+  </market>
+</rollback_bet_settlement>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<venue_summary generated_at="2026-06-23T10:00:00Z">
+  <venue id="sr:venue:1" name="Stadium" capacity="60000" city_name="London"
+         country_name="England" country_code="ENG" map_coordinates="51.5,-0.1">
+    <course id="sr:course:1" name="Course 1">
+      <hole number="1" par="4"/>
+    </course>
+  </venue>
+  <home_teams>
+    <competitor id="sr:competitor:1" name="Team A">
+      <reference_ids>
+        <reference_id name="betradar" value="123"/>
+      </reference_ids>
+      <players>
+        <player id="sr:player:10" name="Player Ten"/>
+      </players>
+      <sport id="sr:sport:1" name="Soccer"/>
+      <category id="sr:category:1" name="England"/>
+    </competitor>
+  </home_teams>
+</venue_summary>

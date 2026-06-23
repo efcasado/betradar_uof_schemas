@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<calculation_response generated_at="2026-06-23T10:00:00Z">
+  <calculation odds="3.45" probability="0.28" harmonization="false"/>
+  <available_selections>
+    <event id="sr:match:42">
+      <markets>
+        <market id="1" specifiers="goalnr=1">
+          <outcome id="1"/>
+        </market>
+      </markets>
+    </event>
+  </available_selections>
+</calculation_response>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<match_summary generated_at="2026-06-23T10:00:00Z">
+  <sport_event id="sr:match:42" scheduled="2026-06-23T18:00:00Z" start_time_tbd="false">
+    <tournament_round type="group" number="1" name="Group A"/>
+    <season id="sr:season:1" name="2025/26" start_date="2025-08-01" end_date="2026-05-30"/>
+    <parent id="sr:stage:1" name="Stage 1"/>
+    <additional_parents>
+      <parent id="sr:stage:2" name="Stage 2"/>
+    </additional_parents>
+    <tournament id="sr:tournament:1" name="Premier League">
+      <tournament_length start_date="2025-08-01" end_date="2026-05-30"/>
+      <sport id="sr:sport:1" name="Soccer"/>
+      <category id="sr:category:1" name="England"/>
+    </tournament>
+    <sport_event_conditions attendance="50000">
+      <referee id="sr:referee:1" name="Smith, John"/>
+      <pitchers>
+        <pitcher id="sr:player:1" name="Doe, Jane" hand="left"/>
+      </pitchers>
+      <venue id="sr:venue:1" name="Stadium" capacity="60000">
+        <course id="sr:course:1" name="Course 1">
+          <hole number="1" par="4"/>
+        </course>
+      </venue>
+      <weather_info temperature_celsius="20" weather_conditions="clear"/>
+    </sport_event_conditions>
+    <competitors>
+      <competitor id="sr:competitor:1" name="Team A" country="England" qualifier="home">
+        <reference_ids>
+          <reference_id name="betradar" value="123"/>
+        </reference_ids>
+        <players>
+          <player id="sr:player:10" name="Player Ten"/>
+        </players>
+      </competitor>
+    </competitors>
+    <races>
+      <sport_event id="sr:match:43" scheduled="2026-06-23T18:00:00Z"/>
+    </races>
+    <venue id="sr:venue:1" name="Stadium"/>
+  </sport_event>
+  <venue id="sr:venue:1" name="Stadium"/>
+  <sport_event_conditions attendance="50000">
+    <referee id="sr:referee:1" name="Smith, John"/>
+  </sport_event_conditions>
+  <sport_event_status status="1" match_status="7" home_score="1" away_score="2">
+    <clock played="71:00" stopped="false"/>
+    <period_scores>
+      <period_score match_status_code="6" number="1" home_score="1" away_score="0"/>
+    </period_scores>
+    <results>
+      <result match_status_code="100" home_score="1" away_score="2"/>
+    </results>
+  </sport_event_status>
+  <coverage_info level="gold" live_coverage="true">
+    <coverage includes="basic_score"/>
+  </coverage_info>
+  <statistics>
+    <totals>
+      <teams>
+        <team id="sr:competitor:1" name="Team A">
+          <statistics yellow_cards="2" red_cards="0" corner_kicks="6"/>
+        </team>
+      </teams>
+    </totals>
+    <periods>
+      <period number="1">
+        <teams>
+          <team id="sr:competitor:1" name="Team A">
+            <statistics yellow_cards="1"/>
+          </team>
+        </teams>
+      </period>
+    </periods>
+  </statistics>
+</match_summary>

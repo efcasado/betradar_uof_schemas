@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<match_status_descriptions response_code="OK" location="/v1/descriptions/en/match_status.xml">
+  <match_status id="0" description="Not started" period_number="0">
+    <sports all="true"/>
+  </match_status>
+  <match_status id="6" description="1st half" period_number="1">
+    <sports all="false">
+      <sport id="sr:sport:1"/>
+      <sport id="sr:sport:21"/>
+    </sports>
+  </match_status>
+</match_status_descriptions>

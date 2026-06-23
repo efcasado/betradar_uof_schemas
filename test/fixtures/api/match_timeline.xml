@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<match_timeline generated_at="2026-06-23T10:00:00Z">
+  <sport_event id="sr:match:42" scheduled="2026-06-23T18:00:00Z">
+    <tournament id="sr:tournament:1" name="Premier League">
+      <sport id="sr:sport:1" name="Soccer"/>
+      <category id="sr:category:1" name="England"/>
+    </tournament>
+    <competitors>
+      <competitor id="sr:competitor:1" name="Team A" qualifier="home"/>
+    </competitors>
+  </sport_event>
+  <sport_event_conditions>
+    <venue id="sr:venue:1" name="Stadium"/>
+  </sport_event_conditions>
+  <sport_event_status status="1" match_status="7" home_score="1" away_score="2"/>
+  <coverage_info level="gold" live_coverage="true">
+    <coverage includes="basic_score"/>
+  </coverage_info>
+  <timeline>
+    <event id="1" type="score_change" time="2026-06-23T18:25:00Z" match_time="25"
+           team="home" home_score="1" away_score="0">
+      <goal_scorer id="sr:player:10" name="Player Ten"/>
+      <player id="sr:player:10" name="Player Ten"/>
+      <assist id="sr:player:11" name="Player Eleven" type="primary"/>
+    </event>
+  </timeline>
+</match_timeline>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fixtures_fixture generated_at="2026-06-23T10:00:00Z">
+  <fixture id="sr:match:42" start_time="2026-06-23T18:00:00Z" start_time_confirmed="true"
+           liveodds="booked" status="not_started">
+    <tournament_round type="group" number="1"/>
+    <season id="sr:season:1" name="2025/26"/>
+    <parent id="sr:stage:1"/>
+    <additional_parents>
+      <parent id="sr:stage:2"/>
+    </additional_parents>
+    <tournament id="sr:tournament:1" name="Premier League">
+      <sport id="sr:sport:1" name="Soccer"/>
+      <category id="sr:category:1" name="England"/>
+    </tournament>
+    <sport_event_conditions>
+      <venue id="sr:venue:1" name="Stadium"/>
+    </sport_event_conditions>
+    <competitors>
+      <competitor id="sr:competitor:1" name="Team A" qualifier="home"/>
+    </competitors>
+    <races>
+      <sport_event id="sr:match:43"/>
+    </races>
+    <venue id="sr:venue:1" name="Stadium"/>
+    <delayed_info id="1" description="Rain delay"/>
+    <tv_channels>
+      <tv_channel name="Sky Sports" start_time="2026-06-23T18:00:00Z"/>
+    </tv_channels>
+    <extra_info>
+      <info key="coverage_source" value="venue"/>
+    </extra_info>
+    <coverage_info level="gold" live_coverage="true">
+      <coverage includes="basic_score"/>
+    </coverage_info>
+    <product_info>
+      <is_in_live_score/>
+      <is_in_hosted_statistics/>
+      <is_in_live_center_soccer/>
+      <is_in_live_match_tracker/>
+      <is_auto_traded/>
+      <streaming>
+        <channel id="1" name="Channel 1"/>
+      </streaming>
+      <links>
+        <link name="live" href="https://example.com/live"/>
+      </links>
+    </product_info>
+    <reference_ids>
+      <reference_id name="betradar" value="123"/>
+    </reference_ids>
+    <scheduled_start_time_changes>
+      <scheduled_start_time_change old_time="2026-06-23T17:00:00Z"
+                                   new_time="2026-06-23T18:00:00Z"
+                                   changed_at="2026-06-22T10:00:00Z"/>
+    </scheduled_start_time_changes>
+  </fixture>
+</fixtures_fixture>
