@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bet_settlement certainty="2" product="1" event_id="sr:match:42" timestamp="1653576646190" request_id="7">
+  <outcomes>
+    <market void_reason="0" result="1" id="1" specifiers="goalnr=1">
+      <outcome id="1" result="1" void_factor="0.0" dead_heat_factor="1.0"/>
+      <outcome id="2" result="0"/>
+      <outcome id="3" result="0"/>
+    </market>
+  </outcomes>
+</bet_settlement>

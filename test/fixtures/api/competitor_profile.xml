@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<competitor_profile generated_at="2026-06-23T10:00:00Z">
+  <competitor id="sr:competitor:1" name="Team A" country="England" abbreviation="TMA">
+    <reference_ids>
+      <reference_id name="betradar" value="123"/>
+    </reference_ids>
+    <players>
+      <player id="sr:player:10" name="Player Ten"/>
+    </players>
+    <sport id="sr:sport:1" name="Soccer"/>
+    <category id="sr:category:1" name="England"/>
+  </competitor>
+  <venue id="sr:venue:1" name="Stadium"/>
+  <jerseys>
+    <jersey type="home" base_color="red" sleeve_color="white"/>
+  </jerseys>
+  <manager id="sr:player:99" name="Manager One" nationality="England"/>
+  <players>
+    <player id="sr:player:10" name="Player Ten" type="forward"/>
+  </players>
+  <race_driver_profile>
+    <race_driver id="sr:competitor:1" name="Driver One">
+      <reference_ids>
+        <reference_id name="betradar" value="123"/>
+      </reference_ids>
+      <players>
+        <player id="sr:player:10" name="Player Ten"/>
+      </players>
+    </race_driver>
+    <car name="Car One" chassis="C1" engine_name="E1"/>
+    <race_team id="sr:competitor:2" name="Team Two">
+      <reference_ids>
+        <reference_id name="betradar" value="456"/>
+      </reference_ids>
+      <players>
+        <player id="sr:player:11" name="Player Eleven"/>
+      </players>
+    </race_team>
+  </race_driver_profile>
+</competitor_profile>

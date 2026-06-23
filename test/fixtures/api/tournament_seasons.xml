@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tournament_seasons generated_at="2026-06-23T10:00:00Z">
+  <tournament id="sr:tournament:1" name="Premier League">
+    <sport id="sr:sport:1" name="Soccer"/>
+    <category id="sr:category:1" name="England"/>
+  </tournament>
+  <seasons>
+    <season id="sr:season:1" name="2025/26" start_date="2025-08-01" end_date="2026-05-30"/>
+  </seasons>
+</tournament_seasons>

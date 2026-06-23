@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<betstop_reasons_descriptions response_code="OK" location="/v1/descriptions/betstop_reasons.xml">
+  <betstop_reason id="2" description="Goal in progress"/>
+  <betstop_reason id="4" description="Red card"/>
+</betstop_reasons_descriptions>

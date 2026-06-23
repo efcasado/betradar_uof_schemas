@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant_descriptions response_code="OK">
+  <variant id="sr:point_range:76+">
+    <outcomes>
+      <outcome id="sr:point_range:76+:88" name="76-80"/>
+      <outcome id="sr:point_range:76+:89" name="81-85"/>
+    </outcomes>
+    <mappings>
+      <mapping product_id="1" product_ids="1|3" sport_id="sr:sport:1"
+               market_id="376" sov_template="{variant}" valid_for="variant=sr:point_range:76+"
+               product_market_id="8:232">
+        <mapping_outcome outcome_id="sr:point_range:76+:88" product_outcome_id="1426"
+                         product_outcome_name="76-80"/>
+      </mapping>
+    </mappings>
+  </variant>
+</variant_descriptions>

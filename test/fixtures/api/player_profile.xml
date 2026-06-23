@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player_profile generated_at="2026-06-23T10:00:00Z">
+  <player id="sr:player:10" name="Player Ten" type="forward" date_of_birth="1995-04-12"
+          nationality="England" country_code="ENG" height="183" weight="78"
+          jersey_number="9" full_name="Player Ten Full" gender="male"/>
+</player_profile>

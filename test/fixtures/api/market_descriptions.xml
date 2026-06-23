@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<market_descriptions response_code="OK" location="/v1/descriptions/en/markets.xml">
+  <market id="1" name="1x2" groups="all|score|regular_play"
+          description="Match result" includes_outcomes_of_type="sr:winner"
+          variant="sr:point_range:76+" outcome_type="competitor">
+    <outcomes>
+      <outcome id="1" name="{$competitor1}" description="home team wins"/>
+      <outcome id="2" name="draw"/>
+      <outcome id="3" name="{$competitor2}"/>
+    </outcomes>
+    <specifiers>
+      <specifier name="goalnr" type="integer" description="goal number"/>
+    </specifiers>
+    <mappings>
+      <mapping product_id="1" product_ids="1|3" sport_id="sr:sport:1"
+               market_id="10" sov_template="{total}" valid_for="setnr=1">
+        <mapping_outcome outcome_id="1" product_outcome_id="100" product_outcome_name="home"/>
+      </mapping>
+    </mappings>
+    <attributes>
+      <attribute name="is_flex_score" description="flex score market"/>
+    </attributes>
+  </market>
+</market_descriptions>

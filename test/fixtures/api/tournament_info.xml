@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tournament_info generated_at="2026-06-23T10:00:00Z">
+  <tournament id="sr:tournament:1" name="Premier League">
+    <tournament_length start_date="2025-08-01" end_date="2026-05-30"/>
+    <sport id="sr:sport:1" name="Soccer"/>
+    <category id="sr:category:1" name="England"/>
+    <current_season id="sr:season:1" name="2025/26" start_date="2025-08-01" end_date="2026-05-30"/>
+    <season_coverage_info season_id="sr:season:1" scheduled="380" played="120"/>
+    <competitors>
+      <competitor id="sr:competitor:1" name="Team A">
+        <reference_ids>
+          <reference_id name="betradar" value="123"/>
+        </reference_ids>
+        <players>
+          <player id="sr:player:10" name="Player Ten"/>
+        </players>
+      </competitor>
+    </competitors>
+  </tournament>
+  <season id="sr:season:1" name="2025/26"/>
+  <round type="group" number="1"/>
+  <season_coverage_info season_id="sr:season:1" scheduled="380" played="120"/>
+  <coverage_info live_coverage="true"/>
+  <groups>
+    <group name="Group A">
+      <competitor id="sr:competitor:1" name="Team A"/>
+    </group>
+  </groups>
+  <competitors>
+    <competitor id="sr:competitor:1" name="Team A"/>
+  </competitors>
+  <children>
+    <tournament id="sr:tournament:2" name="Cup">
+      <sport id="sr:sport:1" name="Soccer"/>
+      <category id="sr:category:1" name="England"/>
+    </tournament>
+  </children>
+</tournament_info>
