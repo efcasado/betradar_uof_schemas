@@ -8,20 +8,31 @@ defmodule UOF.Schemas.XML do
   nesting, every XML element/attribute name lines up with a schema field name,
   so one recursive walk handles all of them.
 
-  Use `decode/2` with a schema module to decode a known type (static), or with
-  a `root element => module` registry map to dispatch on the document's root
-  element (dynamic), as the heterogeneous AMQP feed does (see `UOF.Schemas.Feed`).
+  Call `decode/1` to dispatch on the document's root element against the full
+  generated registry (`UOF.Schemas.XML.Registry`) — every feed message and API
+  response decodes through this one entry point. Use `decode/2` only when you
+  need to override that: pass a schema module to force a known type, or a custom
+  `root element => module` registry to scope dispatch.
   """
 
   @doc """
-  Decode `xml` into an Ecto struct.
+  Decode `xml`, dispatching on its root element against the full schema registry.
+
+  This is the everyday entry point: it handles every known feed message and API
+  response. Returns `{:ok, struct}`, `{:error, Ecto.Changeset.t()}`, or
+  `{:error, {:unknown_message, name}}` for an unrecognised root element.
+  """
+  def decode(xml) when is_binary(xml), do: decode(xml, UOF.Schemas.XML.Registry.all())
+
+  @doc """
+  Decode `xml` against an explicit `target`, overriding the default registry.
 
   `target` selects the schema:
 
-    * a **schema module** — decode into that type. Use when the caller already
-      knows it (e.g. an HTTP API response tied to a specific endpoint).
+    * a **schema module** — decode into that type (static). Use when the caller
+      already knows it and wants to assert it regardless of the root element.
     * a **registry map** of `root element name => schema module` — dispatch on
-      the document's root element, for a heterogeneous stream such as the feed.
+      the document's root element, scoped to that map.
 
   Returns `{:ok, struct}` or `{:error, Ecto.Changeset.t()}`; with a registry
   that has no entry for the root element, `{:error, {:unknown_message, name}}`.

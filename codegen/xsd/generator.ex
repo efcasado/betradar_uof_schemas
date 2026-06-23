@@ -159,10 +159,9 @@ defmodule Mix.UOF.Schemas.XSD.Generator do
     end
   end
 
-  # Module-friendly name: drop a trailing "Type" and PascalCase what's left, so
-  # both PascalCase ("EventType" -> "Event") and camelCase XSD type names
-  # ("sportEventStatus" -> "SportEventStatus", "clockType" -> "Clock") work.
-  defp short_name(name), do: name |> String.replace_suffix("Type", "") |> Macro.camelize()
+  # Module-friendly name for a complexType: drop a trailing "Type" and PascalCase.
+  # Public so the task can map a root element's type to its generated module.
+  def short_name(name), do: name |> String.replace_suffix("Type", "") |> Macro.camelize()
 
   defp indent(lines, n) do
     pad = String.duplicate(" ", n)

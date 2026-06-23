@@ -21,11 +21,13 @@ end
 
 ## Usage
 
-`UOF.Schemas.XML.decode/2` is the single entry point. Pass a **`root element => module` registry** to dispatch on the document's root element (dynamic), or a **schema module** to decode a known type (static). Either way it returns `{:ok, struct}` or `{:error, Ecto.Changeset.t()}`, walking the nested embeds and casting scalars (integers, decimals, datetimes, …) as it goes.
+`UOF.Schemas.XML.decode/1` is the everyday entry point. It dispatches on the document's root element against the full generated registry — every feed message and API response — and returns `{:ok, struct}`, `{:error, Ecto.Changeset.t()}`, or `{:error, {:unknown_message, name}}` for an unrecognised root. It walks the nested embeds and casts scalars (integers, decimals, datetimes, …) as it goes.
 
-### Dynamic — the AMQP feed
+For the cases where you want to override that dispatch, `decode/2` takes either a **schema module** to decode a known type (static), or a scoped **`root element => module` registry**.
 
-The feed is a heterogeneous stream, so you dispatch on the root element. `UOF.Schemas.Feed` ships the registry; hand it to `decode/2` and it selects the matching schema — here an `odds_change`:
+### `decode/1` — dispatch on the root element
+
+You don't need to know which message you're holding. Hand the raw XML to `decode/1` and it selects the matching schema — here an `odds_change` from the feed:
 
 ```elixir
 xml = """
@@ -41,7 +43,7 @@ xml = """
 </odds_change>
 """
 
-{:ok, odds_change} = UOF.Schemas.XML.decode(xml, UOF.Schemas.Feed.registry())
+{:ok, odds_change} = UOF.Schemas.XML.decode(xml)
 
 # => %UOF.Schemas.Feed.OddsChange{
 #      product: 1,
@@ -66,9 +68,18 @@ xml = """
 #    }
 ```
 
-### Static — an HTTP API response
+Any HTTP API response decodes the same way. Every endpoint can also return the shared `<response>` envelope (an error or a write acknowledgement), which `decode/1` routes to `UOF.Schemas.Common.Response`:
 
-When the endpoint already fixes the type, pass the schema module directly. For example, the market descriptions endpoint (`GET /v1/descriptions/{language}/markets.xml`):
+```elixir
+{:ok, response} =
+  UOF.Schemas.XML.decode(~s(<response response_code="NOT_FOUND"><message>no such event</message></response>))
+
+# => %UOF.Schemas.Common.Response{response_code: "NOT_FOUND", message: "no such event", ...}
+```
+
+### `decode/2` — override the dispatch
+
+When the endpoint already fixes the type, pass the schema module directly to assert it regardless of the root element. For example, the market descriptions endpoint (`GET /v1/descriptions/{language}/markets.xml`):
 
 ```elixir
 xml = """
@@ -103,7 +114,7 @@ xml = """
 #    }
 ```
 
-No single global registry is provided for the HTTP API: root element names are not unique across API groups (for example `<response>` maps to both `UOF.Schemas.API.CustomBet.Response` and `UOF.Schemas.API.Response.Response`), so callers pin the schema as above (or pass a scoped registry).
+`decode/2` also accepts a scoped **`root element => module` registry** to restrict dispatch to a subset of messages. `UOF.Schemas.Feed.registry/0` ships the feed-only map, so `UOF.Schemas.XML.decode(xml, UOF.Schemas.Feed.registry())` decodes feed messages and rejects everything else with `{:error, {:unknown_message, name}}`.
 
 ## Regenerating schemas
 
