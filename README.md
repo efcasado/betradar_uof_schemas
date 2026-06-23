@@ -23,7 +23,7 @@ end
 
 `UOF.Schemas.XML.decode/1` is the everyday entry point. It dispatches on the document's root element against the full generated registry — every feed message and API response — and returns `{:ok, struct}`, `{:error, Ecto.Changeset.t()}`, or `{:error, {:unknown_message, name}}` for an unrecognised root. It walks the nested embeds and casts scalars (integers, decimals, datetimes, …) as it goes.
 
-For the cases where you want to override that dispatch, `decode/2` takes either a **schema module** to decode a known type (static), or a scoped **`root element => module` registry**.
+For the cases where you want to override that dispatch, `decode/2` takes a **schema module** to decode a known type (static).
 
 ### `decode/1` — dispatch on the root element
 
@@ -113,8 +113,6 @@ xml = """
 #      ]
 #    }
 ```
-
-`decode/2` also accepts a scoped **`root element => module` registry** to restrict dispatch to a subset of messages. `UOF.Schemas.Feed.registry/0` ships the feed-only map, so `UOF.Schemas.XML.decode(xml, UOF.Schemas.Feed.registry())` decodes feed messages and rejects everything else with `{:error, {:unknown_message, name}}`.
 
 ## Regenerating schemas
 
