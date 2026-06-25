@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/efcasado/betradar_uof_schemas/compare/v0.2.0...v0.2.1) (2026-06-25)
+
+
+### Dependencies
+
+* **ci:** bump actions/cache from 5 to 6 ([d6dbc24](https://github.com/efcasado/betradar_uof_schemas/commit/d6dbc241c0208a15fcc7ef705415b249a4e32d66))
+
 ## [0.2.0](https://github.com/efcasado/betradar_uof_schemas/compare/v0.1.0...v0.2.0) (2026-06-23)
 
 
