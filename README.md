@@ -14,7 +14,7 @@ Add `:uof_schemas` to your dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:uof_schemas, "~> 0.2.0"} # <!-- x-release-please-version -->
+    {:uof_schemas, "~> 0.2.1"} # <!-- x-release-please-version -->
   ]
 end
 ```
