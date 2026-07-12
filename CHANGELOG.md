@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.1](https://github.com/efcasado/betradar_uof_schemas/compare/v0.2.0...v0.2.1) (2026-07-12)
+
+
+### Dependencies
+
+* bump ecto from 3.14.0 to 3.14.1 ([d0b5bef](https://github.com/efcasado/betradar_uof_schemas/commit/d0b5bef16758f7a732a32985d8b631b63d68f053))
+* bump saxy from 1.6.0 to 1.6.1 ([5d6978f](https://github.com/efcasado/betradar_uof_schemas/commit/5d6978f3c1f23e59cbcfc62e1fc666dd3f5e8904))
+* **ci:** bump actions/cache from 5 to 6 ([d6dbc24](https://github.com/efcasado/betradar_uof_schemas/commit/d6dbc241c0208a15fcc7ef705415b249a4e32d66))
+
 ## [0.2.0](https://github.com/efcasado/betradar_uof_schemas/compare/v0.1.0...v0.2.0) (2026-06-23)
 
 
