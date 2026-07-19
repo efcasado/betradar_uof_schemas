@@ -39,6 +39,7 @@ defmodule UOF.Schemas.FixturesTest do
     "api/filtered_calculation_response.xml" => API.CustomBet.FilteredCalculationResponse,
     "api/cashout.xml" => API.Probability.Cashout,
     "api/match_summary.xml" => API.Sports.MatchSummaryEndpoint,
+    "api/race_summary.xml" => API.Sports.StageSummaryEndpoint,
     "api/match_timeline.xml" => API.Sports.MatchTimelineEndpoint,
     "api/fixtures_fixture.xml" => API.Sports.FixturesEndpoint,
     "api/fixture_changes.xml" => API.Sports.FixtureChangesEndpoint,
@@ -117,6 +118,39 @@ defmodule UOF.Schemas.FixturesTest do
       assert [%{id: "1", team: 1} = first, _, _] = market.outcome
       assert Decimal.equal?(first.odds, Decimal.new("2.25"))
       assert first.probabilities == 0.425694
+    end
+  end
+
+  describe "race_summary fixture nesting" do
+    setup do
+      xml = File.read!(Path.join(@fixtures_dir, "api/race_summary.xml"))
+      {:ok, race_summary} = XML.decode(xml)
+      %{race_summary: race_summary}
+    end
+
+    # C-Odds (producer 14) sport events use a "codds:" prefixed id rather than
+    # the usual sr:match/sr:stage urn, and are nested under a parent stage via
+    # stage_type="competition_group"/"round" instead of being top-level.
+    test "decodes a codds: sport event id and its parent stage", %{race_summary: rs} do
+      sport_event = rs.sport_event
+      assert sport_event.id == "codds:competition_group:1"
+      assert sport_event.type == "child"
+      assert sport_event.stage_type == "competition_group"
+      assert sport_event.parent.id == "sr:stage:1"
+      assert sport_event.parent.stage_type == "round"
+      assert sport_event.tournament.sport.name == "Golf"
+    end
+
+    test "walks the stage sport_event_status/results/competitor embeds", %{race_summary: rs} do
+      status = rs.sport_event_status
+      assert status.status == "ended"
+      assert status.winner_id == "sr:competitor:1"
+
+      assert [competitor] = status.results.competitor
+      assert competitor.id == "sr:competitor:1"
+      assert competitor.position == 1
+
+      assert [%{value: "4", type: "strokes", specifiers: "hole=1"}, _] = competitor.result
     end
   end
 end
