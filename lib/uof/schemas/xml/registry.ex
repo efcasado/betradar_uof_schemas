@@ -26,6 +26,7 @@ defmodule UOF.Schemas.XML.Registry do
     "odds_change" => UOF.Schemas.Feed.OddsChange,
     "player_profile" => UOF.Schemas.API.Sports.PlayerProfileEndpoint,
     "producers" => UOF.Schemas.API.Descriptions.Producers,
+    "race_summary" => UOF.Schemas.API.Sports.StageSummaryEndpoint,
     "response" => UOF.Schemas.Common.Response,
     "result_changes" => UOF.Schemas.API.Sports.ResultChangesEndpoint,
     "rollback_bet_cancel" => UOF.Schemas.Feed.RollbackBetCancel,

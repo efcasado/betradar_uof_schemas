@@ -35,9 +35,9 @@ defmodule Mix.Tasks.Uof.Schemas.Gen do
         betting_status_descriptions variant_descriptions producers void_reasons_descriptions)},
     {:unifiedfeed, "UOF.Schemas.API.Users", "lib/uof/schemas/api/users", ~w(bookmaker_details)},
     {:sports_api, "UOF.Schemas.API.Sports", "lib/uof/schemas/api/sports",
-     ~w(fixtures_fixture schedule fixture_changes result_changes match_summary match_timeline
-        sports sport_categories tournaments tournament_info player_profile competitor_profile
-        venue_summary tournament_seasons sport_tournaments)},
+     ~w(fixtures_fixture schedule fixture_changes result_changes match_summary race_summary
+        match_timeline sports sport_categories tournaments tournament_info player_profile
+        competitor_profile venue_summary tournament_seasons sport_tournaments)},
     {:feed, "UOF.Schemas.Feed", "lib/uof/schemas/feed",
      ~w(odds_change bet_settlement bet_stop bet_cancel rollback_bet_cancel
         rollback_bet_settlement fixture_change alive snapshot_complete)}
