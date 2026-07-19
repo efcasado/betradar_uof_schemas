@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/efcasado/betradar_uof_schemas/compare/v0.2.1...v0.3.0) (2026-07-19)
+
+
+### Features
+
+* add race_summary endpoint support ([827ff3d](https://github.com/efcasado/betradar_uof_schemas/commit/827ff3d93cc3e1999bba0171ceac6ccda938cb58))
+
+
+### Dependencies
+
+* bump req from 0.6.2 to 0.6.3 ([857690c](https://github.com/efcasado/betradar_uof_schemas/commit/857690c8880f51d37bdddb24ea8a3483e8744775))
+
 ## [0.2.1](https://github.com/efcasado/betradar_uof_schemas/compare/v0.2.0...v0.2.1) (2026-07-12)
 
 
