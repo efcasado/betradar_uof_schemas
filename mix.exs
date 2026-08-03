@@ -39,7 +39,7 @@ defmodule UOF.Schemas.MixProject do
     [
       {:ecto, "~> 3.12"},
       {:saxy, "~> 1.5"},
-      {:req, "~> 0.6.2", only: :dev},
+      {:req, "~> 0.7.2", only: :dev},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:styler, "~> 1.2", only: [:dev, :test], runtime: false},
