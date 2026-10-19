@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.2](https://github.com/efcasado/betradar_uof_schemas/compare/v0.3.1...v0.3.2) (2026-10-19)
+
+
+### Dependencies
+
+* bump req from 0.7.4 to 0.7.5 ([#35](https://github.com/efcasado/betradar_uof_schemas/issues/35)) ([4952b3b](https://github.com/efcasado/betradar_uof_schemas/commit/4952b3b7219371bc6d33ab2a3d61c8e57c537a16))
+* **ci:** bump dorny/test-reporter from 3.0.0 to 3.2.0 ([#33](https://github.com/efcasado/betradar_uof_schemas/issues/33)) ([c1a984e](https://github.com/efcasado/betradar_uof_schemas/commit/c1a984e632f76b3387e7181d83167d307460f336))
+* **ci:** bump jdx/mise-action from 4.3.0 to 5.0.0 ([#30](https://github.com/efcasado/betradar_uof_schemas/issues/30)) ([243fc7b](https://github.com/efcasado/betradar_uof_schemas/commit/243fc7be504704bfc0783f475424ceeb462707a2))
+* **ci:** bump jdx/mise-action from 5.0.0 to 5.1.1 ([#34](https://github.com/efcasado/betradar_uof_schemas/issues/34)) ([7e8bb63](https://github.com/efcasado/betradar_uof_schemas/commit/7e8bb63b67743ca0c90e0bee756f8c7677c0a076))
+* **ci:** bump jdx/mise-action from 5.1.1 to 5.2.0 ([#37](https://github.com/efcasado/betradar_uof_schemas/issues/37)) ([70ef51c](https://github.com/efcasado/betradar_uof_schemas/commit/70ef51c6794830f91323dc9f3116f7ab2d520106))
+
 ## [0.3.1](https://github.com/efcasado/betradar_uof_schemas/compare/v0.3.0...v0.3.1) (2026-09-11)
 
 
