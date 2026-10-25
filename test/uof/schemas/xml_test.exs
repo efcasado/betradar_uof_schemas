@@ -32,6 +32,31 @@ defmodule UOF.Schemas.XMLTest do
     end
   end
 
+  describe "root/1" do
+    test "reads the root element's name and raw attributes" do
+      xml = ~s(<odds_change product="1" event_id="sr:match:1" timestamp="42" request_id="7"><odds/></odds_change>)
+
+      assert XML.root(xml) ==
+               {:ok,
+                {"odds_change", %{"product" => "1", "event_id" => "sr:match:1", "timestamp" => "42", "request_id" => "7"}}}
+    end
+
+    test "skips the XML declaration and drops namespace prefixes" do
+      xml = ~s(<?xml version="1.0" encoding="UTF-8"?><ns:alive ns:product="3" subscribed="0"/>)
+
+      assert XML.root(xml) == {:ok, {"alive", %{"product" => "3", "subscribed" => "0"}}}
+    end
+
+    test "stops at the root start tag without validating the rest" do
+      assert {:ok, {"bet_stop", %{"product" => "1"}}} = XML.root(~s(<bet_stop product="1"><unclosed>))
+    end
+
+    test "returns an error when the start tag cannot be parsed" do
+      assert {:error, _reason} = XML.root("<not valid")
+      assert {:error, _reason} = XML.root("")
+    end
+  end
+
   describe "decode/2 with a schema module (static)" do
     test "decodes attributes into the given schema, casting scalar types" do
       xml =

@@ -42,6 +42,43 @@ defmodule UOF.Schemas.XML do
     decode_root(root, tag, target)
   end
 
+  @doc """
+  Read the root element's name and attributes without decoding the document.
+
+  Parsing stops at the root's start tag, so this is cheap even for large
+  documents. Use it to route or correlate a message before deciding whether to
+  decode it, for example by its `product` or `request_id` attribute. Names drop
+  any namespace prefix, and attribute values are returned as strings, uncast.
+
+  Only the XML up to the end of the root start tag is checked: content after it
+  is not validated. Returns `{:ok, {name, attributes}}`, or `{:error, reason}`
+  when the start tag cannot be parsed.
+
+      UOF.Schemas.XML.root(~s(<odds_change product="1" request_id="42"><odds/></odds_change>))
+      # => {:ok, {"odds_change", %{"product" => "1", "request_id" => "42"}}}
+  """
+  def root(xml) when is_binary(xml) do
+    case Saxy.parse_string(xml, __MODULE__.RootHandler, nil) do
+      {:ok, {name, attributes}} ->
+        {:ok, {local(name), Map.new(attributes, fn {attribute, value} -> {local(attribute), value} end)}}
+
+      {:ok, nil} ->
+        {:error, :no_root_element}
+
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  defmodule RootHandler do
+    @moduledoc false
+    @behaviour Saxy.Handler
+
+    @impl true
+    def handle_event(:start_element, {name, attributes}, _state), do: {:stop, {name, attributes}}
+    def handle_event(_event, _data, state), do: {:ok, state}
+  end
+
   # static: an explicit schema module.
   defp decode_root(root, _tag, module) when is_atom(module), do: to_struct(root, module)
 

@@ -114,6 +114,17 @@ xml = """
 #    }
 ```
 
+### `root/1` — read the root element without decoding
+
+`root/1` returns the root element's name and its attributes as raw strings, stopping the parse at the root's start tag. Use it to route or correlate a message cheaply before deciding whether to decode it:
+
+```elixir
+UOF.Schemas.XML.root(~s(<odds_change product="1" request_id="42"><odds/></odds_change>))
+# => {:ok, {"odds_change", %{"product" => "1", "request_id" => "42"}}}
+```
+
+Only the XML up to the end of the root start tag is checked, and values are not cast.
+
 ## Regenerating schemas
 
 The modules under `lib/uof/schemas/` are generated and committed, so consumers never run codegen. To refresh them against the pinned SDK tag:
