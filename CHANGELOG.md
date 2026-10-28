@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.3](https://github.com/efcasado/betradar_uof_schemas/compare/v0.3.2...v0.3.3) (2026-10-28)
+
+
+### Dependencies
+
+* **ci:** bump jdx/mise-action from 5.2.0 to 5.2.1 ([#38](https://github.com/efcasado/betradar_uof_schemas/issues/38)) ([e8fc0ab](https://github.com/efcasado/betradar_uof_schemas/commit/e8fc0ab7825dc55485525fe69147408343bacb4e))
+* **ci:** bump jdx/mise-action from 5.2.1 to 5.2.3 ([#42](https://github.com/efcasado/betradar_uof_schemas/issues/42)) ([574acf4](https://github.com/efcasado/betradar_uof_schemas/commit/574acf427d73b0ebbfc941a345f9899778d16573))
+
 ## [0.3.2](https://github.com/efcasado/betradar_uof_schemas/compare/v0.3.1...v0.3.2) (2026-10-19)
 
 
