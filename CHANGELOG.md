@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.4](https://github.com/efcasado/betradar_uof_schemas/compare/v0.3.3...v0.3.4) (2026-11-10)
+
+
+### Dependencies
+
+* bump ecto from 3.14.2 to 3.14.3 ([#47](https://github.com/efcasado/betradar_uof_schemas/issues/47)) ([ecba1d3](https://github.com/efcasado/betradar_uof_schemas/commit/ecba1d3295279c0ffdf3b4d4c5a77d9663e62f2b))
+* **ci:** bump jdx/mise-action from 5.2.5 to 5.2.7 ([#48](https://github.com/efcasado/betradar_uof_schemas/issues/48)) ([fec2ebe](https://github.com/efcasado/betradar_uof_schemas/commit/fec2ebe85678187ed13d34768312e87792735335))
+
 ## [0.3.3](https://github.com/efcasado/betradar_uof_schemas/compare/v0.3.2...v0.3.3) (2026-11-04)
 
 
